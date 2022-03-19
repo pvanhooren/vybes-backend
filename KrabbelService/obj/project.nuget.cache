@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "LZaWKe3UIg0T/OR3Rg7mEqraKK7XNOlWs46E3EbgkYBCIe91rZqAxdZQULWVCgq6sCla6F7K04K2Nh5kgJYxkQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Pim\\Desktop\\Semester 6\\Individual project\\Code\\vybes-backend\\KrabbelService\\KrabbelService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pim\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Pim\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Pim\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Pim\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Pim\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Pim\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
