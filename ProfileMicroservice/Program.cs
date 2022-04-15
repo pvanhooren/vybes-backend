@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using ProfileMicroservice.Data;
+using ProfileMicroservice.Data.Repositories;
+using ProfileMicroservice.Data.Repositories.Interfaces;
+using ProfileMicroservice.Services;
+using ProfileMicroservice.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
+ConfigureServices(builder.Services);
 
 // Add services to the container.
 
@@ -23,3 +31,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<AppDbContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration["ConnectionStrings:ProfilesConn"],
+            sqlServerOptionsAction: sqlOptions => { sqlOptions.EnableRetryOnFailure(); });
+    }, ServiceLifetime.Singleton);
+    
+    services.AddSingleton<IProfileService, ProfileService>();
+    services.AddSingleton<IProfileRepository, ProfileRepository>();
+}

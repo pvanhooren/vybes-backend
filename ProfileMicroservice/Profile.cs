@@ -4,15 +4,15 @@ namespace ProfileMicroservice;
 
 public class Profile
 {
-    [Key] public Guid ProfileId { get; set; }
+    [Key] public long ProfileId { get; set; }
     
     public String UserId { get; set; }
     
     public String DisplayName { get; set; }
     
-    public String About { get; set; }
+    public String? About { get; set; }
 
-    public String PhoneNumber { get; set; }
+    public String? PhoneNumber { get; set; }
 
     public DateTime Birthday { get; set; }
     
