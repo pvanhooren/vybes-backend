@@ -10,7 +10,17 @@ public interface IProfileRepository
 
     bool DeleteProfile(Profile profile);
 
+    bool ProfileExistsByProfileId(long profileId);
+    
+    bool ProfileExistsByUserId(string userId);
+    
+    bool ProfileExistsByUserName(string userName);
+    
+    Profile? GetProfileByUserId(string userId);
+
     List<Profile>? GetProfiles();
 
-    Profile? GetProfileByUserId(string userId);
+    List<Profile>? FindProfilesByUserName(string userName);
+    
+    List<Profile>? FindProfilesByDisplayName(string displayName);
 }

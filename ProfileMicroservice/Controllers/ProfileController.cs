@@ -28,7 +28,7 @@ public class ProfileController : Controller
     }
     
     [HttpGet]
-    [Route("/{userId}")]
+    [Route("/id/{userId}")]
     public IActionResult GetProfileByUserId(string userId)
     {
         Profile? profile = _profileService.GetProfileByUserId(userId);
@@ -40,23 +40,68 @@ public class ProfileController : Controller
 
         return NotFound("No profile was found with the user id " + userId);
     }
+
+    [HttpGet]
+    [Route("/un/{userName}")]
+    public IActionResult FindProfilesByUserName(string userName)
+    {
+        List<Profile>? profiles = _profileService.FindProfilesByUserName(userName);
+
+        if (profiles != null)
+        {
+            return Ok(profiles);
+        }
+
+        return NotFound("No profiles were found with the username " + userName);
+    }
     
+    [HttpGet]
+    [Route("/dn/{displayName}")]
+    public IActionResult FindProfilesByDisplayName(string displayName)
+    {
+        List<Profile>? profiles = _profileService.FindProfilesByDisplayName(displayName);
+
+        if (profiles != null)
+        {
+            return Ok(profiles);
+        }
+
+        return NotFound("No profiles were found with the display name " + displayName);
+    }
+
     [HttpPost]
     [Route("/new")]
-    public IActionResult AddProfile(string userId)
+    public IActionResult AddProfile(string userId, string userName)
     {
         Profile profile = new Profile
         {
             UserId = userId,
-            DisplayName = "Pim",
-            About = "Hi my name is Pim",
-            PhoneNumber = "06-12345678",
-            Birthday = DateTime.ParseExact("2002-02-07 04:00", "yyyy-MM-dd HH:mm",
-                System.Globalization.CultureInfo.InvariantCulture),
+            UserName = userName,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now
         };
 
-        return Ok(_profileService.AddProfile(profile));
+        Profile? result = _profileService.AddProfile(profile);
+
+        if (result != null)
+        {
+            return Ok(result);
+        } 
+        
+        return BadRequest("The profile could not be created.");
+    }
+    
+    [HttpPut]
+    [Route("/update")]
+    public IActionResult UpdateProfile(Profile profile)
+    {
+        Profile? result = _profileService.UpdateProfile(profile);
+
+        if (result != null)
+        {
+            return Ok(result);
+        } 
+        
+        return BadRequest("The profile could not be updated.");
     }
 }

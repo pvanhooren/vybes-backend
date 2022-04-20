@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/weatherforecast",
+      "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +9,7 @@
           "Port": 7052
         }
       ],
-      "UpstreamPathTemplate": "/weather/{everything}",
+      "UpstreamPathTemplate": "/krabbels/{everything}",
       "UpstreamHttpMethod": [
         "Get",
         "Post",
@@ -23,7 +23,7 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/profile",
+      "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {

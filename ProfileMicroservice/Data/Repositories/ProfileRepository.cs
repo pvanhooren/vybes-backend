@@ -41,6 +41,42 @@ public class ProfileRepository : IProfileRepository
         return true;
     }
 
+    public bool ProfileExistsByProfileId(long profileId)
+    {
+        bool? exists = _dbContext.Profiles?.Any(x => x.ProfileId == profileId);
+
+        if (exists.HasValue)
+        {
+            return exists.Value;
+        }
+        
+        return true;
+    }
+
+    public bool ProfileExistsByUserId(string userId)
+    {
+        bool? exists = _dbContext.Profiles?.Any(x => x.UserId == userId);
+        
+        if (exists.HasValue)
+        {
+            return exists.Value;
+        }
+        
+        return true;
+    }
+
+    public bool ProfileExistsByUserName(string userName)
+    {
+        bool? exists = _dbContext.Profiles?.Any(x => x.UserName == userName);
+        
+        if (exists.HasValue)
+        {
+            return exists.Value;
+        }
+        
+        return true;
+    }
+    
     public List<Profile>? GetProfiles()
     {
         return _dbContext.Profiles?
@@ -54,5 +90,21 @@ public class ProfileRepository : IProfileRepository
             .AsNoTracking()
             .Where(x => x.UserId == userId)
             .FirstOrDefault();
+    }
+
+    public List<Profile>? FindProfilesByUserName(string userName)
+    {
+        return _dbContext.Profiles?
+            .AsNoTracking()
+            .Where(x => x.UserName.Contains(userName))
+            .ToList();
+    }
+    
+    public List<Profile>? FindProfilesByDisplayName(string displayName)
+    {
+        return _dbContext.Profiles?
+            .AsNoTracking()
+            .Where(x => x.DisplayName.Contains(displayName))
+            .ToList();
     }
 }
