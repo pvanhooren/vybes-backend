@@ -28,7 +28,21 @@ public class ProfileController : Controller
     }
     
     [HttpGet]
-    [Route("/id/{userId}")]
+    [Route("/id/{profileId}")]
+    public IActionResult GetProfileById(long profileId)
+    {
+        Profile? profile = _profileService.GetProfileById(profileId);
+        
+        if (profile != null)
+        {
+            return Ok(profile);
+        }
+
+        return NotFound("No profile was found with the profile id " + profileId);
+    }
+    
+    [HttpGet]
+    [Route("/uid/{userId}")]
     public IActionResult GetProfileByUserId(string userId)
     {
         Profile? profile = _profileService.GetProfileByUserId(userId);
@@ -40,35 +54,7 @@ public class ProfileController : Controller
 
         return NotFound("No profile was found with the user id " + userId);
     }
-
-    [HttpGet]
-    [Route("/un/{userName}")]
-    public IActionResult FindProfilesByUserName(string userName)
-    {
-        List<Profile>? profiles = _profileService.FindProfilesByUserName(userName);
-
-        if (profiles != null)
-        {
-            return Ok(profiles);
-        }
-
-        return NotFound("No profiles were found with the username " + userName);
-    }
     
-    [HttpGet]
-    [Route("/dn/{displayName}")]
-    public IActionResult FindProfilesByDisplayName(string displayName)
-    {
-        List<Profile>? profiles = _profileService.FindProfilesByDisplayName(displayName);
-
-        if (profiles != null)
-        {
-            return Ok(profiles);
-        }
-
-        return NotFound("No profiles were found with the display name " + displayName);
-    }
-
     [HttpPost]
     [Route("/new")]
     public IActionResult AddProfile(string userId, string userName)
@@ -103,5 +89,47 @@ public class ProfileController : Controller
         } 
         
         return BadRequest("The profile could not be updated.");
+    }
+    
+    [HttpDelete]
+    [Route("/delete")]
+    public IActionResult DeleteProfile(Profile profile)
+    {
+        bool result = _profileService.DeleteProfile(profile);
+
+        if (result)
+        {
+            return Ok(result);
+        } 
+        
+        return BadRequest("The profile could not be deleted.");
+    }
+
+    [HttpGet]
+    [Route("/un/{userName}")]
+    public IActionResult FindProfilesByUserName(string userName)
+    {
+        List<Profile>? profiles = _profileService.FindProfilesByUserName(userName);
+
+        if (profiles != null)
+        {
+            return Ok(profiles);
+        }
+
+        return NotFound("No profiles were found with the username " + userName);
+    }
+
+    [HttpGet]
+    [Route("/dn/{displayName}")]
+    public IActionResult FindProfilesByDisplayName(string displayName)
+    {
+        List<Profile>? profiles = _profileService.FindProfilesByDisplayName(displayName);
+
+        if (profiles != null)
+        {
+            return Ok(profiles);
+        }
+
+        return NotFound("No profiles were found with the display name " + displayName);
     }
 }

@@ -16,6 +16,26 @@ public class ProfileRepository : IProfileRepository
     {
         return (_dbContext.SaveChanges() >= 0);
     }
+    
+    public List<Profile>? GetProfiles()
+    {
+        return _dbContext.Profiles?
+            .AsNoTracking()
+            .ToList();
+    }
+
+    public Profile? GetProfileById(long profileId)
+    {
+        return _dbContext.Profiles?.Find(profileId);
+    }
+
+    public Profile? GetProfileByUserId(string userId)
+    {
+        return _dbContext.Profiles?
+            .AsNoTracking()
+            .Where(x => x.UserId == userId)
+            .FirstOrDefault();
+    }
 
     public Profile AddProfile(Profile profile)
     {
@@ -75,21 +95,6 @@ public class ProfileRepository : IProfileRepository
         }
         
         return true;
-    }
-    
-    public List<Profile>? GetProfiles()
-    {
-        return _dbContext.Profiles?
-            .AsNoTracking()
-            .ToList();
-    }
-
-    public Profile? GetProfileByUserId(string userId)
-    {
-        return _dbContext.Profiles?
-            .AsNoTracking()
-            .Where(x => x.UserId == userId)
-            .FirstOrDefault();
     }
 
     public List<Profile>? FindProfilesByUserName(string userName)

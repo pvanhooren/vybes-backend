@@ -12,6 +12,31 @@ public class ProfileService : IProfileService
     {
         _profileRepository = profileRepository;
     }
+    
+    public List<Profile>? GetProfiles()
+    {
+        return _profileRepository.GetProfiles();
+    }
+
+    public Profile? GetProfileById(long profileId)
+    {
+        if (profileId != 0)
+        {
+            return _profileRepository.GetProfileById(profileId);
+        }
+
+        return null;
+    }
+    
+    public Profile? GetProfileByUserId(string userId)
+    {
+        if (userId != "")
+        {
+            return _profileRepository.GetProfileByUserId(userId);
+        }
+
+        return null;
+    }
 
     public Profile? AddProfile(Profile profile)
     {
@@ -29,7 +54,7 @@ public class ProfileService : IProfileService
     public Profile? UpdateProfile(Profile profile)
     {
         profile.UpdatedAt = DateTime.Now;
-        
+
         bool profileIdExists = _profileRepository.ProfileExistsByProfileId(profile.ProfileId);
         bool userNameExists = _profileRepository.ProfileExistsByUserName(profile.UserName);
 
@@ -40,20 +65,17 @@ public class ProfileService : IProfileService
 
         return null;
     }
-    
-    public Profile? GetProfileByUserId(string userId)
+
+    public bool DeleteProfile(Profile profile)
     {
-        if (userId != "")
+        bool profileIdExists = _profileRepository.ProfileExistsByProfileId(profile.ProfileId);
+
+        if (profileIdExists)
         {
-            return _profileRepository.GetProfileByUserId(userId);
+            return _profileRepository.DeleteProfile(profile);
         }
 
-        return null;
-    }
-    
-    public List<Profile>? GetProfiles()
-    {
-        return _profileRepository.GetProfiles();
+        return false;
     }
 
     public List<Profile>? FindProfilesByUserName(string userName)

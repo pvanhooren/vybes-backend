@@ -4,6 +4,12 @@ public interface IProfileRepository
 {
     bool SaveChanges();
     
+    List<Profile>? GetProfiles();
+
+    Profile? GetProfileById(long profileId);
+    
+    Profile? GetProfileByUserId(string userId);
+    
     Profile AddProfile(Profile profile);
 
     Profile UpdateProfile(Profile profile);
@@ -13,12 +19,8 @@ public interface IProfileRepository
     bool ProfileExistsByProfileId(long profileId);
     
     bool ProfileExistsByUserId(string userId);
-    
-    bool ProfileExistsByUserName(string userName);
-    
-    Profile? GetProfileByUserId(string userId);
 
-    List<Profile>? GetProfiles();
+    bool ProfileExistsByUserName(string userName);
 
     List<Profile>? FindProfilesByUserName(string userName);
     

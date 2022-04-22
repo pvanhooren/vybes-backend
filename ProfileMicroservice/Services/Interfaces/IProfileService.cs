@@ -2,13 +2,17 @@ namespace ProfileMicroservice.Services.Interfaces;
 
 public interface IProfileService
 {
+    List<Profile>? GetProfiles();
+
+    Profile? GetProfileById(long profileId);
+    
+    Profile? GetProfileByUserId(string userId);
+    
     Profile? AddProfile(Profile profile);
 
     Profile? UpdateProfile(Profile profile);
-    
-    Profile? GetProfileByUserId(string userId);
 
-    List<Profile>? GetProfiles();
+    bool DeleteProfile(Profile profile);
 
     List<Profile>? FindProfilesByUserName(string userName);
 
