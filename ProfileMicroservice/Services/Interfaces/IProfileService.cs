@@ -2,7 +2,7 @@ namespace ProfileMicroservice.Services.Interfaces;
 
 public interface IProfileService
 {
-    List<Profile>? GetProfiles();
+    List<Profile> GetProfiles();
 
     Profile? GetProfileById(long profileId);
     
@@ -14,7 +14,7 @@ public interface IProfileService
 
     bool DeleteProfile(Profile profile);
 
-    List<Profile>? FindProfilesByUserName(string userName);
+    List<Profile> FindProfilesByUserName(string userName);
 
-    List<Profile>? FindProfilesByDisplayName(string displayName);
+    List<Profile> FindProfilesByDisplayName(string displayName);
 }

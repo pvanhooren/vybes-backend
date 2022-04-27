@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileMicroservice", "Prof
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrabbelMicroservice", "KrabbelMicroservice\KrabbelMicroservice.csproj", "{0906955D-0DEC-4AAF-ACE5-616DD3639641}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileMicroserviceTests", "ProfileMicroserviceTests\ProfileMicroserviceTests.csproj", "{3679A1A3-D768-4C36-B8C2-CE105333385D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{0906955D-0DEC-4AAF-ACE5-616DD3639641}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0906955D-0DEC-4AAF-ACE5-616DD3639641}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0906955D-0DEC-4AAF-ACE5-616DD3639641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3679A1A3-D768-4C36-B8C2-CE105333385D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3679A1A3-D768-4C36-B8C2-CE105333385D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3679A1A3-D768-4C36-B8C2-CE105333385D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3679A1A3-D768-4C36-B8C2-CE105333385D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

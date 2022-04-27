@@ -17,9 +17,9 @@ public class ProfileController : Controller
     [HttpGet]
     public IActionResult Index()
     {
-        List<Profile>? profiles = _profileService.GetProfiles();
+        List<Profile> profiles = _profileService.GetProfiles();
 
-        if (profiles != null && profiles.Any())
+        if (profiles.Any())
         {
             return Ok(profiles);
         }
@@ -111,7 +111,7 @@ public class ProfileController : Controller
     {
         List<Profile>? profiles = _profileService.FindProfilesByUserName(userName);
 
-        if (profiles != null)
+        if (profiles.Any())
         {
             return Ok(profiles);
         }
@@ -125,7 +125,7 @@ public class ProfileController : Controller
     {
         List<Profile>? profiles = _profileService.FindProfilesByDisplayName(displayName);
 
-        if (profiles != null)
+        if (profiles.Any())
         {
             return Ok(profiles);
         }

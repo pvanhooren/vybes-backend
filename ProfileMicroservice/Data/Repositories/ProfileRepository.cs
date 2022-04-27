@@ -17,9 +17,9 @@ public class ProfileRepository : IProfileRepository
         return (_dbContext.SaveChanges() >= 0);
     }
     
-    public List<Profile>? GetProfiles()
+    public List<Profile> GetProfiles()
     {
-        return _dbContext.Profiles?
+        return _dbContext.Profiles
             .AsNoTracking()
             .ToList();
     }
@@ -31,7 +31,7 @@ public class ProfileRepository : IProfileRepository
 
     public Profile? GetProfileByUserId(string userId)
     {
-        return _dbContext.Profiles?
+        return _dbContext.Profiles
             .AsNoTracking()
             .Where(x => x.UserId == userId)
             .FirstOrDefault();
@@ -39,7 +39,7 @@ public class ProfileRepository : IProfileRepository
 
     public Profile AddProfile(Profile profile)
     {
-        _dbContext.Profiles?.Add(profile);
+        _dbContext.Profiles.Add(profile);
         SaveChanges();
 
         return profile;
@@ -47,7 +47,7 @@ public class ProfileRepository : IProfileRepository
 
     public Profile UpdateProfile(Profile profile)
     {
-        _dbContext.Profiles?.Update(profile);
+        _dbContext.Profiles.Update(profile);
         SaveChanges();
 
         return profile;
@@ -55,7 +55,7 @@ public class ProfileRepository : IProfileRepository
 
     public bool DeleteProfile(Profile profile)
     {
-        _dbContext.Profiles?.Remove(profile);
+        _dbContext.Profiles.Remove(profile);
         SaveChanges();
 
         return true;
@@ -63,51 +63,30 @@ public class ProfileRepository : IProfileRepository
 
     public bool ProfileExistsByProfileId(long profileId)
     {
-        bool? exists = _dbContext.Profiles?.Any(x => x.ProfileId == profileId);
-
-        if (exists.HasValue)
-        {
-            return exists.Value;
-        }
-        
-        return true;
+        return _dbContext.Profiles.Any(x => x.ProfileId == profileId);
     }
 
     public bool ProfileExistsByUserId(string userId)
     {
-        bool? exists = _dbContext.Profiles?.Any(x => x.UserId == userId);
-        
-        if (exists.HasValue)
-        {
-            return exists.Value;
-        }
-        
-        return true;
+        return _dbContext.Profiles.Any(x => x.UserId == userId);
     }
 
     public bool ProfileExistsByUserName(string userName)
     {
-        bool? exists = _dbContext.Profiles?.Any(x => x.UserName == userName);
-        
-        if (exists.HasValue)
-        {
-            return exists.Value;
-        }
-        
-        return true;
+        return _dbContext.Profiles.Any(x => x.UserName == userName);
     }
 
-    public List<Profile>? FindProfilesByUserName(string userName)
+    public List<Profile> FindProfilesByUserName(string userName)
     {
-        return _dbContext.Profiles?
+        return _dbContext.Profiles
             .AsNoTracking()
             .Where(x => x.UserName.Contains(userName))
             .ToList();
     }
     
-    public List<Profile>? FindProfilesByDisplayName(string displayName)
+    public List<Profile> FindProfilesByDisplayName(string displayName)
     {
-        return _dbContext.Profiles?
+        return _dbContext.Profiles
             .AsNoTracking()
             .Where(x => x.DisplayName.Contains(displayName))
             .ToList();

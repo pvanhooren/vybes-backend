@@ -13,7 +13,7 @@ public class ProfileService : IProfileService
         _profileRepository = profileRepository;
     }
     
-    public List<Profile>? GetProfiles()
+    public List<Profile> GetProfiles()
     {
         return _profileRepository.GetProfiles();
     }
@@ -24,7 +24,7 @@ public class ProfileService : IProfileService
         {
             return _profileRepository.GetProfileById(profileId);
         }
-
+        
         return null;
     }
     
@@ -78,12 +78,12 @@ public class ProfileService : IProfileService
         return false;
     }
 
-    public List<Profile>? FindProfilesByUserName(string userName)
+    public List<Profile> FindProfilesByUserName(string userName)
     {
         return _profileRepository.FindProfilesByUserName(userName);
     }
     
-    public List<Profile>? FindProfilesByDisplayName(string displayName)
+    public List<Profile> FindProfilesByDisplayName(string displayName)
     {
         return _profileRepository.FindProfilesByDisplayName(displayName);
     }

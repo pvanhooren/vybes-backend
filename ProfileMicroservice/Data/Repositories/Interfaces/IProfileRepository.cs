@@ -4,7 +4,7 @@ public interface IProfileRepository
 {
     bool SaveChanges();
     
-    List<Profile>? GetProfiles();
+    List<Profile> GetProfiles();
 
     Profile? GetProfileById(long profileId);
     
@@ -22,7 +22,7 @@ public interface IProfileRepository
 
     bool ProfileExistsByUserName(string userName);
 
-    List<Profile>? FindProfilesByUserName(string userName);
+    List<Profile> FindProfilesByUserName(string userName);
     
-    List<Profile>? FindProfilesByDisplayName(string displayName);
+    List<Profile> FindProfilesByDisplayName(string displayName);
 }
