@@ -38,8 +38,8 @@ void ConfigureServices(IServiceCollection services)
     {
         options.UseSqlServer(builder.Configuration["ConnectionStrings:ProfilesConn"],
             sqlServerOptionsAction: sqlOptions => { sqlOptions.EnableRetryOnFailure(); });
-    }, ServiceLifetime.Singleton);
+    }, ServiceLifetime.Transient);
     
-    services.AddSingleton<IProfileService, ProfileService>();
-    services.AddSingleton<IProfileRepository, ProfileRepository>();
+    services.AddTransient<IProfileService, ProfileService>();
+    services.AddTransient<IProfileRepository, ProfileRepository>();
 }

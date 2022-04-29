@@ -57,12 +57,13 @@ public class ProfileController : Controller
     
     [HttpPost]
     [Route("/new")]
-    public IActionResult AddProfile(string userId, string userName)
+    public IActionResult AddProfile(string userId, string userName, string displayName)
     {
         Profile profile = new Profile
         {
             UserId = userId,
             UserName = userName,
+            DisplayName = displayName,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now
         };
