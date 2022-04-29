@@ -143,3 +143,13 @@ C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMic
 C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\obj\Debug\net6.0\ProfileMicroserviceTests.pdb
 C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\obj\Debug\net6.0\ProfileMicroserviceTests.genruntimeconfig.cache
 C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\obj\Debug\net6.0\ref\ProfileMicroserviceTests.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\System.Collections.Immutable.dll
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ProfileMicroserviceTests\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll

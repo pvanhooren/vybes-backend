@@ -80,7 +80,7 @@ public class ProfileRepository : IProfileRepository
     {
         return _dbContext.Profiles
             .AsNoTracking()
-            .Where(x => x.UserName.Contains(userName))
+            .Where(x => x.UserName.ToLower().Contains(userName.ToLower()))
             .ToList();
     }
     
@@ -88,7 +88,7 @@ public class ProfileRepository : IProfileRepository
     {
         return _dbContext.Profiles
             .AsNoTracking()
-            .Where(x => x.DisplayName.Contains(displayName))
+            .Where(x => x.DisplayName.ToLower().Contains(displayName.ToLower()))
             .ToList();
     }
 }

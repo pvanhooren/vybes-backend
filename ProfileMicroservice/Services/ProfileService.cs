@@ -55,14 +55,28 @@ public class ProfileService : IProfileService
     {
         profile.UpdatedAt = DateTime.Now;
 
-        bool profileIdExists = _profileRepository.ProfileExistsByProfileId(profile.ProfileId);
-        bool userNameExists = _profileRepository.ProfileExistsByUserName(profile.UserName);
+        var existingProfile = _profileRepository.GetProfileById(profile.ProfileId);
 
-        if (profileIdExists && !userNameExists)
+        if (existingProfile != null)
         {
-            return _profileRepository.UpdateProfile(profile);
-        }
+            bool canCreate = true;
+            
+            if (existingProfile.UserName != profile.UserName)
+            {
+                bool userNameExists = _profileRepository.ProfileExistsByUserName(profile.UserName);
 
+                if (userNameExists)
+                {
+                    canCreate = false;
+                }
+            }
+
+            if (canCreate)
+            {
+                return _profileRepository.UpdateProfile(profile);
+            }
+        }
+        
         return null;
     }
 
