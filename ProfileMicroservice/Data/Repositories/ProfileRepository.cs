@@ -26,7 +26,10 @@ public class ProfileRepository : IProfileRepository
 
     public Profile? GetProfileById(long profileId)
     {
-        return _dbContext.Profiles?.Find(profileId);
+        return _dbContext.Profiles
+            .AsNoTracking()
+            .Where(x => x.ProfileId == profileId)
+            .FirstOrDefault();
     }
 
     public Profile? GetProfileByUserId(string userId)
@@ -34,6 +37,14 @@ public class ProfileRepository : IProfileRepository
         return _dbContext.Profiles
             .AsNoTracking()
             .Where(x => x.UserId == userId)
+            .FirstOrDefault();
+    }
+    
+    public Profile? GetProfileByUserName(string userName)
+    {
+        return _dbContext.Profiles
+            .AsNoTracking()
+            .Where(x => x.UserName == userName)
             .FirstOrDefault();
     }
 

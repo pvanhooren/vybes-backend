@@ -197,6 +197,51 @@ public class ProfileServiceTests
         // Assert
         Assert.Null(result!);
     }
+    
+    [Fact]
+    public void GetProfileByUserNameTest()
+    {
+        // Arrange
+        CreateDb();
+        
+        var userName = "alexiaorange";
+
+        // Act
+        var result = _profileService.GetProfileByUserName(userName);
+
+        // Assert
+        Assert.Equal("0100-0200", result!.PhoneNumber);
+    }
+    
+    [Fact]
+    public void GetProfileByUserNameTest_FailByInvalidUserName()
+    {
+        // Arrange
+        CreateDb();
+        
+        var userName = "alexiavonorange"; // This username does not exist, so no profile should be found!
+
+        // Act
+        var result = _profileService.GetProfileByUserName(userName);
+
+        // Assert
+        Assert.Null(result!);
+    }
+    
+    [Fact]
+    public void GetProfileByUserNameTest_FailByEmptyUserName()
+    {
+        // Arrange
+        CreateDb();
+        
+        var userName = ""; // This user id is empty, so no profile should be found!
+
+        // Act
+        var result = _profileService.GetProfileByUserName(userName);
+
+        // Assert
+        Assert.Null(result!);
+    }
 
     [Fact]
     public void AddProfileTest()

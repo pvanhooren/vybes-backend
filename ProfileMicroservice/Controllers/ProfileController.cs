@@ -55,18 +55,26 @@ public class ProfileController : Controller
         return NotFound("No profile was found with the user id " + userId);
     }
     
+    [HttpGet]
+    [Route("/un/{userName}")]
+    public IActionResult GetProfileByUserName(string userName)
+    {
+        Profile? profile = _profileService.GetProfileByUserId(userName);
+        
+        if (profile != null)
+        {
+            return Ok(profile);
+        }
+
+        return NotFound("No profile was found with the username " + userName);
+    }
+    
     [HttpPost]
     [Route("/new")]
-    public IActionResult AddProfile(string userId, string userName, string displayName)
+    public IActionResult AddProfile(Profile profile)
     {
-        Profile profile = new Profile
-        {
-            UserId = userId,
-            UserName = userName,
-            DisplayName = displayName,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now
-        };
+        profile.CreatedAt = DateTime.Now;
+        profile.UpdatedAt = DateTime.Now;
 
         Profile? result = _profileService.AddProfile(profile);
 
@@ -107,7 +115,7 @@ public class ProfileController : Controller
     }
 
     [HttpGet]
-    [Route("/un/{userName}")]
+    [Route("/search/un/{userName}")]
     public IActionResult FindProfilesByUserName(string userName)
     {
         List<Profile>? profiles = _profileService.FindProfilesByUserName(userName);
@@ -121,7 +129,7 @@ public class ProfileController : Controller
     }
 
     [HttpGet]
-    [Route("/dn/{displayName}")]
+    [Route("/search/dn/{displayName}")]
     public IActionResult FindProfilesByDisplayName(string displayName)
     {
         List<Profile>? profiles = _profileService.FindProfilesByDisplayName(displayName);

@@ -37,6 +37,16 @@ public class ProfileService : IProfileService
 
         return null;
     }
+    
+    public Profile? GetProfileByUserName(string userName)
+    {
+        if (userName != "")
+        {
+            return _profileRepository.GetProfileByUserName(userName);
+        }
+
+        return null;
+    }
 
     public Profile? AddProfile(Profile profile)
     {

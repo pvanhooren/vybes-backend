@@ -8,6 +8,8 @@ public interface IProfileService
     
     Profile? GetProfileByUserId(string userId);
     
+    Profile? GetProfileByUserName(string userName);
+    
     Profile? AddProfile(Profile profile);
 
     Profile? UpdateProfile(Profile profile);
