@@ -37,8 +37,7 @@ sonarqube-check-job:
       - "dotnet sonarscanner end /d:sonar.login=\"$SONAR_TOKEN\""
   allow_failure: true
   only:
-    - master # or the name of your main branch
-
+    - main # or the name of your main branch
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
