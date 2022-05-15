@@ -3,7 +3,6 @@ image: mcr.microsoft.com/dotnet/sdk:6.0
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
-  - sonarqube
   - deploy
 
 build-job:       # This job runs in the build stage, which runs first.
@@ -16,28 +15,6 @@ unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - "dotnet test vybes-backend.sln"
-
-sonarqube-check-job:
-  stage: sonarqube
-  image: mcr.microsoft.com/dotnet/core/sdk:latest
-  variables:
-    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script: 
-      - "apt-get update"
-      - "apt-get install --yes openjdk-11-jre"
-      - "dotnet tool install --global dotnet-sonarscanner"
-      - "export PATH=\"$PATH:$HOME/.dotnet/tools\""
-      - "dotnet sonarscanner begin /k:\"Vybes-backend\" /d:sonar.login=\"$SONAR_TOKEN\" /d:\"sonar.host.url=$SONAR_HOST_URL\" "
-      - "dotnet build"
-      - "dotnet sonarscanner end /d:sonar.login=\"$SONAR_TOKEN\""
-  allow_failure: true
-  only:
-    - main # or the name of your main branch
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
