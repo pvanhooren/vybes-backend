@@ -58,6 +58,9 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+# Sonarqube
+.sonarqube/
+
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 
