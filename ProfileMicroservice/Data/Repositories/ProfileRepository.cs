@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProfileMicroservice.Data.Repositories.Interfaces;
+using ProfileMicroservice.Models;
 
 namespace ProfileMicroservice.Data.Repositories;
 

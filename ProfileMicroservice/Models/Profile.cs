@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ProfileMicroservice;
+namespace ProfileMicroservice.Models;
 
 public class Profile
 {

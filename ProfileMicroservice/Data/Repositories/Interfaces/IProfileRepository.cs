@@ -1,3 +1,5 @@
+using ProfileMicroservice.Models;
+
 namespace ProfileMicroservice.Data.Repositories.Interfaces;
 
 public interface IProfileRepository

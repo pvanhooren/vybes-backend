@@ -1,4 +1,12 @@
+using KrabbelMicroservice.Data;
+using KrabbelMicroservice.Data.Repositories;
+using KrabbelMicroservice.Data.Repositories.Interfaces;
+using KrabbelMicroservice.Services;
+using KrabbelMicroservice.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+ConfigureServices(builder.Services);
 
 // Add services to the container.
 
@@ -23,3 +31,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<AppDbContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration["ConnectionStrings:KrabbelsConn"],
+            sqlServerOptionsAction: sqlOptions => { sqlOptions.EnableRetryOnFailure(); });
+    }, ServiceLifetime.Transient);
+    
+    services.AddTransient<IProfileKrabbelService, ProfileKrabbelService>();
+    services.AddTransient<IProfileKrabbelRepository, ProfileKrabbelRepository>();
+}

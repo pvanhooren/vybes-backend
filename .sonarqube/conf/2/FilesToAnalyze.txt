@@ -1,0 +1,9 @@
+﻿C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\Program.cs
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\obj\Debug\net6.0\ApiGateway.GlobalUsings.g.cs
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\obj\Debug\net6.0\ApiGateway.AssemblyInfo.cs
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\obj\Debug\net6.0\ApiGateway.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\appsettings.Development.json
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\appsettings.json
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\ocelot.Development.json
+C:\Users\Pim\Desktop\Semester 6\Individual project\Code\vybes-backend\ApiGateway\Properties\launchSettings.json

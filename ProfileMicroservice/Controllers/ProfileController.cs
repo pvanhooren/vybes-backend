@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ProfileMicroservice.Models;
 using ProfileMicroservice.Services.Interfaces;
 
 namespace ProfileMicroservice.Controllers;
@@ -73,9 +74,6 @@ public class ProfileController : Controller
     [Route("/new")]
     public IActionResult AddProfile(Profile profile)
     {
-        profile.CreatedAt = DateTime.Now;
-        profile.UpdatedAt = DateTime.Now;
-
         Profile? result = _profileService.AddProfile(profile);
 
         if (result != null)
@@ -118,7 +116,7 @@ public class ProfileController : Controller
     [Route("/search/un/{userName}")]
     public IActionResult FindProfilesByUserName(string userName)
     {
-        List<Profile>? profiles = _profileService.FindProfilesByUserName(userName);
+        List<Profile> profiles = _profileService.FindProfilesByUserName(userName);
 
         if (profiles.Any())
         {

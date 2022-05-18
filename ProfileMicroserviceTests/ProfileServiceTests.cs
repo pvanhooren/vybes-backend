@@ -8,6 +8,7 @@ using ProfileMicroservice;
 using ProfileMicroservice.Data;
 using ProfileMicroservice.Data.Repositories;
 using ProfileMicroservice.Data.Repositories.Interfaces;
+using ProfileMicroservice.Models;
 using ProfileMicroservice.Services;
 using ProfileMicroservice.Services.Interfaces;
 using Xunit;

@@ -1,5 +1,6 @@
 using System.Globalization;
 using ProfileMicroservice.Data.Repositories.Interfaces;
+using ProfileMicroservice.Models;
 using ProfileMicroservice.Services.Interfaces;
 
 namespace ProfileMicroservice.Services;
@@ -50,6 +51,9 @@ public class ProfileService : IProfileService
 
     public Profile? AddProfile(Profile profile)
     {
+        profile.CreatedAt = DateTime.Now;
+        profile.UpdatedAt = DateTime.Now;
+        
         bool userIdExists = _profileRepository.ProfileExistsByUserId(profile.UserId);
         bool userNameExists = _profileRepository.ProfileExistsByUserName(profile.UserName);
 

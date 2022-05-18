@@ -1,3 +1,5 @@
+using ProfileMicroservice.Models;
+
 namespace ProfileMicroservice.Services.Interfaces;
 
 public interface IProfileService
