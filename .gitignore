@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# VsCode
+.vscode
+
 # User-specific files
 *.rsuser
 *.suo
@@ -12,6 +15,13 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+
+# Connection strings 
+appsettings.Development.json
+**/appsettings.Development.json
+
+# Mono auto generated files
+mono_crash.*
 
 # Build results
 [Dd]ebug/
@@ -27,15 +37,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 
-# Visual Studio
+# Visual Studio 2015/2017 cache/options directory
 .vs/
-
-# Visual Studio Code
-.vscode/
-
-# Rider
-.idea/
-
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -218,7 +221,7 @@ _pkginfo.txt
 # files ending in .cache can be ignored
 *.[Cc]ache
 # but keep track of directories ending in .cache
-!?*.[Cc]ache/
+!*.[Cc]ache/
 
 # Others
 ClientBin/
@@ -238,6 +241,8 @@ orleans.codegen.cs
 # Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
 #bower_components/
+# ASP.NET Core default setup: bower directory is configured as wwwroot/lib/ and bower restore is true
+**/wwwroot/lib/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -262,7 +267,6 @@ ServiceFabricBackup/
 *.bim.layout
 *.bim_*.settings
 *.rptproj.rsuser
-*- Backup*.rdl
 
 # Microsoft Fakes
 FakesAssemblies/
@@ -299,7 +303,7 @@ paket-files/
 .fake/
 
 # JetBrains Rider
-.idea/
+*.idea/
 *.sln.iml
 
 # CodeRush personal settings
@@ -343,8 +347,8 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
-# BeatPulse healthcheck temp database
-healthchecksdb
-
-# Sensitive information
-appsettings.json
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
