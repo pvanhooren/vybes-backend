@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using ProfileMicroservice.Data;
 using ProfileMicroservice.Data.Repositories;
 using ProfileMicroservice.Data.Repositories.Interfaces;
+using ProfileMicroservice.RabbitMQ;
+using ProfileMicroservice.RabbitMQ.Interfaces;
 using ProfileMicroservice.Services;
 using ProfileMicroservice.Services.Interfaces;
 
@@ -39,6 +41,8 @@ void ConfigureServices(IServiceCollection services)
         options.UseSqlServer(builder.Configuration["ConnectionStrings:ProfilesConn"],
             sqlServerOptionsAction: sqlOptions => { sqlOptions.EnableRetryOnFailure(); });
     }, ServiceLifetime.Transient);
+    
+    services.AddSingleton<IMessageBusClient, MessageBusClient>();
     
     services.AddTransient<IProfileService, ProfileService>();
     services.AddTransient<IProfileRepository, ProfileRepository>();

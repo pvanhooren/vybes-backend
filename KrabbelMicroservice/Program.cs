@@ -1,6 +1,8 @@
 using KrabbelMicroservice.Data;
 using KrabbelMicroservice.Data.Repositories;
 using KrabbelMicroservice.Data.Repositories.Interfaces;
+using KrabbelMicroservice.RabbitMQ;
+using KrabbelMicroservice.RabbitMQ.Interfaces;
 using KrabbelMicroservice.Services;
 using KrabbelMicroservice.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -38,8 +40,11 @@ void ConfigureServices(IServiceCollection services)
     {
         options.UseSqlServer(builder.Configuration["ConnectionStrings:KrabbelsConn"],
             sqlServerOptionsAction: sqlOptions => { sqlOptions.EnableRetryOnFailure(); });
-    }, ServiceLifetime.Transient);
-    
+    }, ServiceLifetime.Singleton);
+
+    services.AddSingleton<IEventProcessor, EventProcessor>();
+    services.AddHostedService<MessageBusSubscriber>();
+
     services.AddTransient<IProfileKrabbelService, ProfileKrabbelService>();
     services.AddTransient<IProfileKrabbelRepository, ProfileKrabbelRepository>();
 }

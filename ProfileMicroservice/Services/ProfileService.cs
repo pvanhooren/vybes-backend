@@ -1,6 +1,8 @@
 using System.Globalization;
 using ProfileMicroservice.Data.Repositories.Interfaces;
 using ProfileMicroservice.Models;
+using ProfileMicroservice.Models.Enums;
+using ProfileMicroservice.RabbitMQ.Interfaces;
 using ProfileMicroservice.Services.Interfaces;
 
 namespace ProfileMicroservice.Services;
@@ -8,10 +10,12 @@ namespace ProfileMicroservice.Services;
 public class ProfileService : IProfileService
 {
     private readonly IProfileRepository _profileRepository;
+    private readonly IMessageBusClient _messageBusClient;
 
-    public ProfileService(IProfileRepository profileRepository)
+    public ProfileService(IProfileRepository profileRepository, IMessageBusClient messageBusClient)
     {
         _profileRepository = profileRepository;
+        _messageBusClient = messageBusClient;
     }
     
     public List<Profile> GetProfiles()
@@ -100,7 +104,23 @@ public class ProfileService : IProfileService
 
         if (profileIdExists)
         {
-            return _profileRepository.DeleteProfile(profile);
+            bool success = _profileRepository.DeleteProfile(profile);
+
+            if (success)
+            {
+                EventMessage message = new EventMessage
+                {
+                    Type = EventType.ProfileDeletion,
+                    ProfileId = profile.ProfileId,
+                    Message = "Profile with id " + profile.ProfileId + " was deleted.",
+                };
+
+                _messageBusClient.SendMessage(message);
+                
+                return success;
+            }
+
+            return true;
         }
 
         return false;

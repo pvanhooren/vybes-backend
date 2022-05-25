@@ -9,6 +9,8 @@ using ProfileMicroservice.Data;
 using ProfileMicroservice.Data.Repositories;
 using ProfileMicroservice.Data.Repositories.Interfaces;
 using ProfileMicroservice.Models;
+using ProfileMicroservice.RabbitMQ;
+using ProfileMicroservice.RabbitMQ.Interfaces;
 using ProfileMicroservice.Services;
 using ProfileMicroservice.Services.Interfaces;
 using Xunit;
@@ -92,7 +94,10 @@ public class ProfileServiceTests
         }
 
         var profileRepository = new ProfileRepository(dbContext);
-        _profileService = new ProfileService(profileRepository);
+
+        var mockMessageBusClient = new Mock<IMessageBusClient>();
+        
+        _profileService = new ProfileService(profileRepository, mockMessageBusClient.Object);
     }
     
     [Fact]

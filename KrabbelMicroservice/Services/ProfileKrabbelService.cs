@@ -29,9 +29,14 @@ public class ProfileKrabbelService : IProfileKrabbelService
         return null;
     }
 
-    public List<ProfileKrabbel> GetKrabbelsByProfileId(long profileId)
+    public List<ProfileKrabbel> GetKrabbelsToProfileId(long profileId)
     {
-        return _krabbelRepository.GetKrabbelsByProfileId(profileId);
+        return _krabbelRepository.GetKrabbelsToProfileId(profileId);
+    }
+    
+    public List<ProfileKrabbel> GetKrabbelsFromProfileId(long profileId)
+    {
+        return _krabbelRepository.GetKrabbelsFromProfileId(profileId);
     }
 
     public ProfileKrabbel? AddKrabbel(ProfileKrabbel krabbel)
@@ -65,13 +70,33 @@ public class ProfileKrabbelService : IProfileKrabbelService
 
     public bool DeleteKrabbel(ProfileKrabbel krabbel)
     {
-        bool profileIdExists = _krabbelRepository.KrabbelExists(krabbel.KrabbelId);
+        bool krabbelIdExists = _krabbelRepository.KrabbelExists(krabbel.KrabbelId);
 
-        if (profileIdExists)
+        if (krabbelIdExists)
         {
             return _krabbelRepository.DeleteKrabbel(krabbel);
         }
 
         return false;
+    }
+
+    public bool DeleteKrabbelsWithProfileId(long profileId)
+    {
+        List<ProfileKrabbel> krabbelsByProfile = _krabbelRepository.GetKrabbelsFromProfileId(profileId);
+        List<ProfileKrabbel> krabbelsToProfile = _krabbelRepository.GetKrabbelsFromProfileId(profileId);
+
+        List<ProfileKrabbel> krabbels = krabbelsByProfile.Union(krabbelsToProfile).ToList();
+
+        foreach (var krabbel in krabbels)
+        {
+            bool result = _krabbelRepository.DeleteKrabbel(krabbel);
+
+            if (result == false)
+            {
+                return result;
+            }
+        }
+
+        return true;
     }
 }

@@ -5,11 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace KrabbelMicroservice.Controllers;
 
 [ApiController]
-[Route("krabbels/profile")]
+[Route("/profile")]
 public class ProfileKrabbelController : Controller
 {
     private readonly IProfileKrabbelService _krabbelService;
-    
     public ProfileKrabbelController(IProfileKrabbelService krabbelService)
     {
         _krabbelService = krabbelService;
@@ -43,10 +42,10 @@ public class ProfileKrabbelController : Controller
     }
     
     [HttpGet]
-    [Route("/pid/{profileId}")]
-    public IActionResult GetKrabbelsByProfileId(long profileId)
+    [Route("/pid/to/{profileId}")]
+    public IActionResult GetKrabbelsToProfileId(long profileId)
     {
-        List<ProfileKrabbel> krabbels = _krabbelService.GetKrabbelsByProfileId(profileId);
+        List<ProfileKrabbel> krabbels = _krabbelService.GetKrabbelsToProfileId(profileId);
         
         if (krabbels.Any())
         {
@@ -54,6 +53,20 @@ public class ProfileKrabbelController : Controller
         }
         
         return NotFound("No krabbels were found for the profile with profile id " + profileId);
+    }
+    
+    [HttpGet]
+    [Route("/pid/from/{profileId}")]
+    public IActionResult GetKrabbelsFromProfileId(long profileId)
+    {
+        List<ProfileKrabbel> krabbels = _krabbelService.GetKrabbelsFromProfileId(profileId);
+        
+        if (krabbels.Any())
+        {
+            return Ok(krabbels);
+        }
+        
+        return NotFound("No krabbels were found written by the profile with profile id " + profileId);
     }
 
     [HttpPost]

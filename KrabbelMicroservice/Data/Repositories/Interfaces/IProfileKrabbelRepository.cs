@@ -8,7 +8,9 @@ public interface IProfileKrabbelRepository
 
     ProfileKrabbel? GetKrabbelById(long krabbelId);
     
-    List<ProfileKrabbel> GetKrabbelsByProfileId(long profileId);
+    List<ProfileKrabbel> GetKrabbelsToProfileId(long profileId);
+    
+    List<ProfileKrabbel> GetKrabbelsFromProfileId(long profileId);
     
     ProfileKrabbel AddKrabbel(ProfileKrabbel krabbel);
 

@@ -16,7 +16,11 @@ public class ProfileKrabbelRepository : IProfileKrabbelRepository
     
     public bool SaveChanges()
     {
-        return (_dbContext.SaveChanges() >= 0);
+        bool success = _dbContext.SaveChanges() >= 0;
+        
+        _dbContext.ChangeTracker.Clear();
+
+        return success;
     }
 
     public List<ProfileKrabbel> GetKrabbels()
@@ -34,11 +38,19 @@ public class ProfileKrabbelRepository : IProfileKrabbelRepository
             .FirstOrDefault();
     }
 
-    public List<ProfileKrabbel> GetKrabbelsByProfileId(long profileId)
+    public List<ProfileKrabbel> GetKrabbelsToProfileId(long profileId)
     {
         return _dbContext.ProfileKrabbels
             .AsNoTracking()
             .Where(x => x.ToProfileId == profileId)
+            .ToList();
+    }
+    
+    public List<ProfileKrabbel> GetKrabbelsFromProfileId(long profileId)
+    {
+        return _dbContext.ProfileKrabbels
+            .AsNoTracking()
+            .Where(x => x.FromProfileId == profileId)
             .ToList();
     }
 

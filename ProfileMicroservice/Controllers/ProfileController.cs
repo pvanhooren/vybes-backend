@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProfileMicroservice.Models;
+using ProfileMicroservice.RabbitMQ.Interfaces;
 using ProfileMicroservice.Services.Interfaces;
 
 namespace ProfileMicroservice.Controllers;
@@ -9,10 +10,12 @@ namespace ProfileMicroservice.Controllers;
 public class ProfileController : Controller
 {
     private readonly IProfileService _profileService;
+    private readonly IMessageBusClient _messageBusClient;
 
-    public ProfileController(IProfileService profileService)
+    public ProfileController(IProfileService profileService, IMessageBusClient messageBusClient)
     {
         _profileService = profileService;
+        _messageBusClient = messageBusClient;
     }
 
     [HttpGet]

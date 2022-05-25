@@ -68,9 +68,7 @@ public class ProfileRepository : IProfileRepository
     public bool DeleteProfile(Profile profile)
     {
         _dbContext.Profiles.Remove(profile);
-        SaveChanges();
-
-        return true;
+        return SaveChanges();
     }
 
     public bool ProfileExistsByProfileId(long profileId)
