@@ -83,9 +83,9 @@ public class ProfileKrabbelService : IProfileKrabbelService
     public bool DeleteKrabbelsWithProfileId(long profileId)
     {
         List<ProfileKrabbel> krabbelsByProfile = _krabbelRepository.GetKrabbelsFromProfileId(profileId);
-        List<ProfileKrabbel> krabbelsToProfile = _krabbelRepository.GetKrabbelsFromProfileId(profileId);
+        List<ProfileKrabbel> krabbelsToProfile = _krabbelRepository.GetKrabbelsToProfileId(profileId);
 
-        List<ProfileKrabbel> krabbels = krabbelsByProfile.Union(krabbelsToProfile).ToList();
+        List<ProfileKrabbel> krabbels = krabbelsByProfile.Union(krabbelsToProfile).DistinctBy(x => x.KrabbelId).ToList();
 
         foreach (var krabbel in krabbels)
         {

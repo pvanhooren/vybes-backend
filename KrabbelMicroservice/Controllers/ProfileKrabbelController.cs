@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KrabbelMicroservice.Controllers;
 
 [ApiController]
-[Route("/profile")]
+[Route("profile")]
 public class ProfileKrabbelController : Controller
 {
     private readonly IProfileKrabbelService _krabbelService;
@@ -28,7 +28,7 @@ public class ProfileKrabbelController : Controller
     }
     
     [HttpGet]
-    [Route("/id/{krabbelId}")]
+    [Route("kid/{krabbelId}")]
     public IActionResult GetKrabbelById(long krabbelId)
     {
         ProfileKrabbel? profile = _krabbelService.GetKrabbelById(krabbelId);
@@ -42,7 +42,7 @@ public class ProfileKrabbelController : Controller
     }
     
     [HttpGet]
-    [Route("/pid/to/{profileId}")]
+    [Route("pid/to/{profileId}")]
     public IActionResult GetKrabbelsToProfileId(long profileId)
     {
         List<ProfileKrabbel> krabbels = _krabbelService.GetKrabbelsToProfileId(profileId);
@@ -56,7 +56,7 @@ public class ProfileKrabbelController : Controller
     }
     
     [HttpGet]
-    [Route("/pid/from/{profileId}")]
+    [Route("pid/from/{profileId}")]
     public IActionResult GetKrabbelsFromProfileId(long profileId)
     {
         List<ProfileKrabbel> krabbels = _krabbelService.GetKrabbelsFromProfileId(profileId);
@@ -68,9 +68,26 @@ public class ProfileKrabbelController : Controller
         
         return NotFound("No krabbels were found written by the profile with profile id " + profileId);
     }
+    
+    [HttpGet]
+    [Route("pid/with/{profileId}")]
+    public IActionResult GetKrabbelsWithProfileId(long profileId)
+    {
+        List<ProfileKrabbel> krabbelsByProfile = _krabbelService.GetKrabbelsFromProfileId(profileId);
+        List<ProfileKrabbel> krabbelsToProfile = _krabbelService.GetKrabbelsToProfileId(profileId);
+
+        if (krabbelsByProfile.Any() || krabbelsToProfile.Any())
+        {
+            List<ProfileKrabbel> krabbels = krabbelsByProfile.Concat(krabbelsToProfile).DistinctBy(x => x.KrabbelId).ToList();
+
+            return Ok(krabbels);
+        }
+        
+        return NotFound("No krabbels were found related to the profile with profile id " + profileId);
+    }
 
     [HttpPost]
-    [Route("/new")]
+    [Route("new")]
     public IActionResult AddKrabbel(ProfileKrabbel krabbel)
     {
         krabbel.CreatedAt = DateTime.Now;
@@ -87,7 +104,7 @@ public class ProfileKrabbelController : Controller
     }
     
     [HttpPut]
-    [Route("/update")]
+    [Route("update")]
     public IActionResult UpdateKrabbel(ProfileKrabbel krabbel)
     {
         ProfileKrabbel? result = _krabbelService.UpdateKrabbel(krabbel);
@@ -101,7 +118,7 @@ public class ProfileKrabbelController : Controller
     }
     
     [HttpDelete]
-    [Route("/delete")]
+    [Route("delete")]
     public IActionResult DeleteKrabbel(ProfileKrabbel krabbel)
     {
         bool result = _krabbelService.DeleteKrabbel(krabbel);

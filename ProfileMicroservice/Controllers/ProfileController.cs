@@ -6,7 +6,6 @@ using ProfileMicroservice.Services.Interfaces;
 namespace ProfileMicroservice.Controllers;
 
 [ApiController]
-[Route("[controller]")]
 public class ProfileController : Controller
 {
     private readonly IProfileService _profileService;
@@ -19,6 +18,7 @@ public class ProfileController : Controller
     }
 
     [HttpGet]
+    [Route("/all")]
     public IActionResult Index()
     {
         List<Profile> profiles = _profileService.GetProfiles();
