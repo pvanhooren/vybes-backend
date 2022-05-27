@@ -19,9 +19,9 @@ public class EventProcessor : IEventProcessor
     {
         bool result = false;
         
-        EventMessage eventMessage = JsonConvert.DeserializeObject<EventMessage>(message);
+        EventMessage? eventMessage = JsonConvert.DeserializeObject<EventMessage>(message);
 
-        if(eventMessage.Type == EventType.ProfileDeletion) {
+        if(eventMessage?.Type == EventType.ProfileDeletion) {
             result = _krabbelService.DeleteKrabbelsWithProfileId(eventMessage.ProfileId);
         } else {
             result = false;

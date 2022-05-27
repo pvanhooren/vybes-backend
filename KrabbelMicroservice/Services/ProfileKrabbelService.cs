@@ -43,29 +43,15 @@ public class ProfileKrabbelService : IProfileKrabbelService
     {
         krabbel.CreatedAt = DateTime.Now;
         krabbel.UpdatedAt = DateTime.Now;
-
-        // Check if profile exists
         
-        // if (profileExists)
-        // {
-            return _krabbelRepository.AddKrabbel(krabbel);
-        // }
-        //
-        // return null;
+        return _krabbelRepository.AddKrabbel(krabbel);
     }
 
     public ProfileKrabbel? UpdateKrabbel(ProfileKrabbel krabbel)
     {
         krabbel.UpdatedAt = DateTime.Now;
-
-        // Check if profile exists
         
-        // if (existingKrabbel != null)
-        // {
-            return _krabbelRepository.UpdateKrabbel(krabbel);
-        // }
-        //
-        // return null;
+        return _krabbelRepository.UpdateKrabbel(krabbel);
     }
 
     public bool DeleteKrabbel(ProfileKrabbel krabbel)
@@ -91,7 +77,7 @@ public class ProfileKrabbelService : IProfileKrabbelService
         {
             bool result = _krabbelRepository.DeleteKrabbel(krabbel);
 
-            if (result == false)
+            if (!result)
             {
                 return result;
             }

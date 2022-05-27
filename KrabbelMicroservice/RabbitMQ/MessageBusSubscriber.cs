@@ -24,7 +24,7 @@ public class MessageBusSubscriber : BackgroundService
     {
         var factory = new ConnectionFactory()
         {
-            HostName = "localhost", UserName = "guest", Password = "Pimpas123"
+            HostName = _configuration["RabbitMQ:HostName"], UserName = _configuration["RabbitMQ:UserName"], Password = _configuration["RabbitMQ:Password"]
         };
         
         _connection = factory.CreateConnection();

@@ -5,10 +5,10 @@ namespace ProfileMicroservice.Models;
 public class Profile
 {
     [Key] public long ProfileId { get; set; }
-    
-    public String UserId { get; set; }
-    
-    public String UserName { get; set; }
+
+    public String UserId { get; set; } = "";
+
+    public String UserName { get; set; } = "";
     
     public String? DisplayName { get; set; }
     

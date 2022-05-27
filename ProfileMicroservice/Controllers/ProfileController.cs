@@ -9,12 +9,10 @@ namespace ProfileMicroservice.Controllers;
 public class ProfileController : Controller
 {
     private readonly IProfileService _profileService;
-    private readonly IMessageBusClient _messageBusClient;
 
-    public ProfileController(IProfileService profileService, IMessageBusClient messageBusClient)
+    public ProfileController(IProfileService profileService)
     {
         _profileService = profileService;
-        _messageBusClient = messageBusClient;
     }
 
     [HttpGet]

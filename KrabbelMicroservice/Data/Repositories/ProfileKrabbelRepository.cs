@@ -62,7 +62,7 @@ public class ProfileKrabbelRepository : IProfileKrabbelRepository
         return krabbel;
     }
 
-    public ProfileKrabbel? UpdateKrabbel(ProfileKrabbel krabbel)
+    public ProfileKrabbel UpdateKrabbel(ProfileKrabbel krabbel)
     {
         _dbContext.ProfileKrabbels.Update(krabbel);
         SaveChanges();

@@ -7,8 +7,8 @@ public abstract class Krabbel
     [Key] public long KrabbelId { get; set; }
 
     public long FromProfileId { get; set; }
-    
-    public string Content { get; set; }
+
+    public string Content { get; set; } = "";
     
     public DateTime? CreatedAt { get; set; }
     

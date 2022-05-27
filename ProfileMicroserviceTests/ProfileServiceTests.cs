@@ -1,18 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using ProfileMicroservice;
 using ProfileMicroservice.Data;
 using ProfileMicroservice.Data.Repositories;
-using ProfileMicroservice.Data.Repositories.Interfaces;
 using ProfileMicroservice.Models;
-using ProfileMicroservice.RabbitMQ;
 using ProfileMicroservice.RabbitMQ.Interfaces;
 using ProfileMicroservice.Services;
-using ProfileMicroservice.Services.Interfaces;
 using Xunit;
 
 namespace ProfileMicroserviceTests;
@@ -21,7 +16,7 @@ public class ProfileServiceTests
 {
     private ProfileService _profileService;
 
-    public void CreateDb()
+    private void CreateDb()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseInMemoryDatabase(databaseName: "ProfileTestDb")
@@ -31,7 +26,7 @@ public class ProfileServiceTests
 
         var dbContext = new AppDbContext(options);
 
-        if (dbContext.Profiles.Count() <= 0)
+        if (!dbContext.Profiles.Any())
         {
             var profile1 = new Profile
             {

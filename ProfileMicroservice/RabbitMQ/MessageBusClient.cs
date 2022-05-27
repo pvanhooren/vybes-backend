@@ -16,7 +16,7 @@ public class MessageBusClient : IMessageBusClient
         _configuration = configuration;
         var factory = new ConnectionFactory()
         { 
-            HostName = "localhost", UserName = "guest", Password = "Pimpas123"
+            HostName = _configuration["RabbitMQ:HostName"], UserName = _configuration["RabbitMQ:UserName"], Password = _configuration["RabbitMQ:Password"]
         };
         try
         {
@@ -35,26 +35,16 @@ public class MessageBusClient : IMessageBusClient
         }
     }
 
-    public void SendMessage<T> (T message)
+    public void SendMessage<T>(T message)
     {
         var json = JsonConvert.SerializeObject(message);
         var body = Encoding.UTF8.GetBytes(json);
-        
-        _channel.BasicPublish(exchange: "trigger", 
+
+        _channel.BasicPublish(exchange: "trigger",
             routingKey: "orders",
             basicProperties: null,
             body: body);
         Console.WriteLine($"--> We have sent {message}");
-    }
-
-    public void Dispose()
-    {
-        Console.WriteLine("MessageBus Disposed");
-        if (_channel.IsOpen)
-        {
-            _channel.Close();
-            _connection.Close();
-        }
     }
 
     private void RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
