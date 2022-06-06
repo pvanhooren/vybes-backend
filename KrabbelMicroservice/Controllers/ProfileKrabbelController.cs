@@ -26,7 +26,7 @@ public class ProfileKrabbelController : Controller
 
         return NotFound("No krabbels were found");
     }
-    
+
     [HttpGet]
     [Route("kid/{krabbelId}")]
     public IActionResult GetKrabbelById(long krabbelId)
