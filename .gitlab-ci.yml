@@ -27,6 +27,7 @@ sonarqube-check-job:
     paths:
       - .sonar/cache
   script: 
+      - "echo 'Yes, I am indeed executing inside the Docker container'"
       - "apt-get update"
       - "apt-get install --yes openjdk-11-jre"
       - "dotnet tool install --global dotnet-sonarscanner"
