@@ -9,7 +9,7 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - "sudo dotnet restore vybes-backend.sln"
+    - "dotnet restore vybes-backend.sln"
     - "dotnet build vybes-backend.sln"
 
 unit-test-job:   # This job runs in the test stage.
@@ -27,9 +27,9 @@ sonarqube-check-job:
     paths:
       - .sonar/cache
   script: 
-      - "curl -f http://gitlab-vybes-sonarqube:9000/api/system/status"
-      - "sudo apt-get update"
-      - "sudo apt-get install --yes openjdk-11-jre"
+      - "curl -f http://127.0.0.1:9000/api/system/status"
+      - "apt-get update"
+      - "apt-get install --yes openjdk-11-jre"
       - "dotnet tool install --global dotnet-sonarscanner"
       - "export PATH=\"$PATH:$HOME/.dotnet/tools\""
       - "dotnet sonarscanner begin /k:\"Vybes-backend\" /d:sonar.login=\"$SONAR_TOKEN\" /d:\"sonar.host.url=$SONAR_HOST_URL\" "
