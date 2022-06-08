@@ -28,8 +28,8 @@ sonarqube-check-job:
       - .sonar/cache
   script: 
       - "curl -f http://gitlab-vybes-sonarqube:9000/api/system/status"
-      - "apt-get update"
-      - "apt-get install --yes openjdk-11-jre"
+      - "sudo apt-get update"
+      - "sudo apt-get install --yes openjdk-11-jre"
       - "dotnet tool install --global dotnet-sonarscanner"
       - "export PATH=\"$PATH:$HOME/.dotnet/tools\""
       - "dotnet sonarscanner begin /k:\"Vybes-backend\" /d:sonar.login=\"$SONAR_TOKEN\" /d:\"sonar.host.url=$SONAR_HOST_URL\" "
