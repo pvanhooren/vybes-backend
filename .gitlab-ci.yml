@@ -27,7 +27,8 @@ sonarqube-check-job:
     paths:
       - .sonar/cache
   script: 
-      - "curl -f http://127.0.0.1:9000/api/system/status"
+      - "docker ps"
+      - "curl -f http://gitlab-vybes-sonarqube:9000/api/system/status"
       - "apt-get update"
       - "apt-get install --yes openjdk-11-jre"
       - "dotnet tool install --global dotnet-sonarscanner"
