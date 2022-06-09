@@ -46,4 +46,8 @@ void ConfigureServices(IServiceCollection services)
     
     services.AddTransient<IProfileService, ProfileService>();
     services.AddTransient<IProfileRepository, ProfileRepository>();
+    
+    services.AddCors(options =>
+        options.AddPolicy("CorsPolicy", b =>
+            b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 }

@@ -47,4 +47,8 @@ void ConfigureServices(IServiceCollection services)
 
     services.AddTransient<IProfileKrabbelService, ProfileKrabbelService>();
     services.AddTransient<IProfileKrabbelRepository, ProfileKrabbelRepository>();
+    
+    services.AddCors(options =>
+        options.AddPolicy("CorsPolicy", b =>
+            b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 }

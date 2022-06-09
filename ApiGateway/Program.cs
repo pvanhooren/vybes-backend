@@ -45,5 +45,5 @@ void ConfigureServices(IServiceCollection services)
     services.AddOcelot();
     services.AddCors(options =>
         options.AddPolicy("CorsPolicy", b =>
-            b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+        b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 }
