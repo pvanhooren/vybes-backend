@@ -5,12 +5,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.105.188.54",
-          "Port": 5052
+          "Host": "vybes-krabbel-microservice",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/krabbels/{everything}",
-      "UpstreamHttpcMethod": [
+      "UpstreamHttpMethod": [
         "Get",
         "Post",
         "Patch",
@@ -27,8 +27,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "10.103.149.110",
-          "Port": 5141
+          "Host": "vybes-profile-microservice",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/profiles/{everything}",

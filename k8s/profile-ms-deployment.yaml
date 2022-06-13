@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-ms-deployment
+  labels:
+    app: vybes-profile-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vybes-profile-microservice
+  template:
+    metadata:
+      labels:
+        app: vybes-profile-microservice
+    spec:
+      containers:
+        - name: vybes-profile-microservice
+          image: pimvanhooren/vybes-profile-microservice
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: "ASPNETCORE_ENVIRONMENT"
+              value: "Production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-service
+spec:
+  selector:
+    app: vybes-profile-microservice
+  ports:
+    - protocol: TCP
+      port: 5141
+      targetPort: 80
+  type: LoadBalancer

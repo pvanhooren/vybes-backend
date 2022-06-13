@@ -6,9 +6,10 @@ using ProfileMicroservice.RabbitMQ;
 using ProfileMicroservice.RabbitMQ.Interfaces;
 using ProfileMicroservice.Services;
 using ProfileMicroservice.Services.Interfaces;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigureServices(builder.Services);
+ConfigureServices(builder.Services, builder.Environment);
 
 // Add services to the container.
 
@@ -34,7 +35,7 @@ app.MapControllers();
 
 app.Run();
 
-void ConfigureServices(IServiceCollection services)
+void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)
 {
     services.AddDbContext<AppDbContext>(options =>
     {

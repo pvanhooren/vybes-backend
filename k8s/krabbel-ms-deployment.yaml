@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krabbel-ms-deployment
+  labels:
+    app: vybes-krabbel-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vybes-krabbel-microservice
+  template:
+    metadata:
+      labels:
+        app: vybes-krabbel-microservice
+    spec:
+      containers:
+        - name: vybes-krabbel-microservice
+          image: pimvanhooren/vybes-krabbel-microservice
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: "ASPNETCORE_ENVIRONMENT"
+              value: "Production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: krabbel-service
+spec:
+  selector:
+    app: vybes-krabbel-microservice
+  ports:
+    - protocol: TCP
+      port: 5052
+      targetPort: 80
+  type: LoadBalancer
