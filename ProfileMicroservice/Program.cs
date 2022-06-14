@@ -33,6 +33,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+PrepDb.PrepPopulation(app, builder.Environment.IsProduction());
 app.Run();
 
 void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)

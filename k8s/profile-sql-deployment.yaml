@@ -1,44 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: profile-sql-deployment
+  name: vybes-sql-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vybes-sql-profiles
+      app: vybes-sql
   template:
     metadata:
       labels:
-        app: vybes-sql-profiles
+        app: vybes-sql
     spec:
       containers:
-        - name: vybes-sql-profiles
+        - name: vybes-sql
           image: mcr.microsoft.com/mssql/server:2019-latest
           ports:
             - containerPort: 1433
           env:
+            - name: MSSQL_PID
+              value: "Developer"
             - name: ACCEPT_EULA
               value: "Y"
             - name: SA_PASSWORD
               value: "Pimpas123"
-          volumeMounts:
-            - mountPath: /var/opt/mssql/data
-              name: mssqldb
-      volumes:
-        - name: mssqldb
-          persistentVolumeClaim:
-            claimName: mssql-claim
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: profile-sql-lb
+  name: vybes-sql-lb
 spec:
   type: LoadBalancer
   selector:
-    app: vybes-sql-profiles
+    app: vybes-sql
   ports:
     - protocol: TCP
-      port: 7001
+      port: 1433
       targetPort: 1433

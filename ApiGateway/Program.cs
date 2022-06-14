@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Kubernetes;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureServices(builder.Services);
@@ -42,7 +43,7 @@ void ConfigureServices(IServiceCollection services)
         });
     
     services.AddControllers();
-    services.AddOcelot();
+    services.AddOcelot().AddKubernetes();
     services.AddCors(options =>
         options.AddPolicy("CorsPolicy", b =>
         b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));

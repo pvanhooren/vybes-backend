@@ -3,14 +3,9 @@
     {
       "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "10.105.188.54",
-          "Port": 5052
-        }
-      ],
+      "ServiceName": "krabbel-service",
       "UpstreamPathTemplate": "/krabbels/{everything}",
-      "UpstreamHttpcMethod": [
+      "UpstreamHttpMethod": [
         "Get",
         "Post",
         "Patch",
@@ -25,12 +20,7 @@
     {
       "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "10.103.149.110",
-          "Port": 5141
-        }
-      ],
+      "ServiceName": "profile-service",
       "UpstreamPathTemplate": "/profiles/{everything}",
       "UpstreamHttpMethod": [
         "Get",
@@ -46,6 +36,10 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5086"
+    "BaseUrl": "http://localhost:5086",
+    "ServiceDiscoveryProvider": {
+      "Namespace": "default",
+      "Type": "KubernetesServiceDiscoveryProvider"
+    }
   }
 }
