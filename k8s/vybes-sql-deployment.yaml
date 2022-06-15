@@ -24,6 +24,13 @@ spec:
               value: "Y"
             - name: SA_PASSWORD
               value: "Pimpas123"
+          volumeMounts:
+            - name: vybes-sql-volume
+              mountPath: /var/opt/mssql/data
+      volumes:
+        - name: vybes-sql-volume
+          persistentVolumeClaim:
+            claimName: vybes-sql-data-claim
 ---
 apiVersion: v1
 kind: Service

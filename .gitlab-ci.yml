@@ -42,5 +42,6 @@ sonarqube-check-job:
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   script:
-    - echo "This is a placeholder for the deployment script, nothing is being deployed as of yet."
+    - "kubectl apply -f ."
+    - "echo 'The system has been deployed to a local Kubernetes cluster.'"
 
