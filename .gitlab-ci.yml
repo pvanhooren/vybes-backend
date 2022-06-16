@@ -49,6 +49,7 @@ deploy-job:      # This job runs in the deploy stage.
         DOCKER_TLS_CERTDIR: ""
         DOCKER_DRIVER: overlay2
   script:
+    - "docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD"
     - "cd ./ApiGateway"
     - "docker build -t pimvanhooren/vybes-api-gateway --no-cache ."
     - "docker push pimvanhooren/vybes-api-gateway"
@@ -59,4 +60,3 @@ deploy-job:      # This job runs in the deploy stage.
     - "docker build -t pimvanhooren/vybes-krabbel-microservice --no-cache ."
     - "docker push pimvanhooren/vybes-krabbel-microservice"
     - "echo 'The images have been successfully uploaded to Docker Hub'"
-
