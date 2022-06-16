@@ -41,6 +41,9 @@ sonarqube-check-job:
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  image: gitlab/dind
+  services:
+    - docker:dind
   script:
     - "cd ./ApiGateway"
     - "docker build -t pimvanhooren/vybes-api-gateway --no-cache ."
