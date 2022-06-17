@@ -2,7 +2,8 @@ image: mcr.microsoft.com/dotnet/sdk:6.0
 
 stages:          # List of stages for jobs, and their order of execution
   - build
-  - test
+  - unit-test
+  - performance-test
   - sonarqube
   - deploy
 
@@ -13,9 +14,17 @@ build-job:       # This job runs in the build stage, which runs first.
     - "dotnet build vybes-backend.sln"
 
 unit-test-job:   # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
+  stage: unit-test    # It only starts when the job in the build stage completes successfully.
   script:
     - "dotnet test vybes-backend.sln"
+
+performance-test-job:
+  image:
+    name: loadimpact/k6:latest
+    entrypoint: [ '' ]
+  stage: performance-test
+  script:
+    - "k6 run k6/script.js"
 
 sonarqube-check-job:
   stage: sonarqube
